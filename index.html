@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0a0f1c">
+<title>Husvakur — Video</title>
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:#080c15;color:#f7f9fc;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+header{max-width:1100px;margin:auto;padding:24px 22px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:900;letter-spacing:.16em}.badge{font-size:12px;color:#9da9bd;border:1px solid #29334a;padding:7px 10px;border-radius:999px}
+main{max-width:900px;margin:8vh auto;padding:22px}.hero{text-align:center}.eyebrow{color:#8fa8ff;font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+h1{font-size:clamp(42px,9vw,82px);line-height:.98;margin:18px 0 16px;letter-spacing:-.055em}
+p{color:#9da9bd;font-size:18px;line-height:1.55}.drop{margin:40px auto 0;max-width:700px;border:1.5px dashed #53617d;border-radius:24px;padding:58px 24px;background:#101727;cursor:pointer;transition:.2s}
+.drop:hover,.drop.drag{border-color:#8fa8ff;background:#141d32}.icon{font-size:42px;margin-bottom:12px}.drop strong{display:block;font-size:21px}.drop span{display:block;margin-top:8px;color:#8d9ab0}input{display:none}
+.file{margin:18px auto 0;max-width:700px;padding:16px;border-radius:14px;background:#101727;color:#cdd6e5;display:none}.file.show{display:block}
+footer{text-align:center;color:#5f6b80;font-size:13px;padding:45px 20px}
+</style>
+</head>
+<body>
+<header><div class="logo">HUSVAKUR</div><div class="badge">VIDEO PLATFORM</div></header>
+<main>
+<section class="hero">
+<div class="eyebrow">Simple · Private · Fast</div>
+<h1>Your videos,<br>your space.</h1>
+<p>Husvakur is a clean video-upload experience designed for fast, secure media sharing.</p>
+<label class="drop" id="drop">
+<input id="file" type="file" accept="video/*">
+<div class="icon">↑</div>
+<strong>Choose a video</strong>
+<span>Tap here to select a video from your iPhone</span>
+</label>
+<div class="file" id="fileInfo"></div>
+</section>
+</main>
+<footer>© 2026 Husvakur</footer>
+<script>
+const input=document.querySelector("#file"),drop=document.querySelector("#drop"),info=document.querySelector("#fileInfo");
+input.addEventListener("change",()=>{const f=input.files[0];if(!f)return;info.textContent=`Selected: ${f.name} · ${(f.size/1024/1024).toFixed(1)} MB`;info.classList.add("show")});
+["dragenter","dragover"].forEach(e=>drop.addEventListener(e,x=>{x.preventDefault();drop.classList.add("drag")}));
+["dragleave","drop"].forEach(e=>drop.addEventListener(e,x=>{x.preventDefault();drop.classList.remove("drag")}));
+</script>
+</body>
+</html>
